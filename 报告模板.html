@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML 报告模板</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{--accent:#2E8B8B;--bg:#F5F9F9;--card:#fff;--text:#2C3E50;--muted:#7F8C8D;--nav:#1A2B2B;--navText:#A8D8D8;--a2:#20B2AA;--a3:#48D1CC;--line:#D9EEEE;--shadow:0 18px 45px rgba(46,139,139,.12);--r:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.75 system-ui,-apple-system,"Segoe UI",sans-serif}
+    .nav{position:fixed;inset:0 auto 0 0;width:200px;background:linear-gradient(180deg,var(--nav),#102020);padding:28px 18px;z-index:10}
+    .brand{color:white;font-weight:800;font-size:18px;margin-bottom:26px}.brand span{display:block;color:var(--navText);font-weight:500;font-size:12px}
+    .nav a{position:relative;display:block;color:var(--navText);text-decoration:none;border-radius:12px;padding:10px 12px 10px 16px;margin:7px 0;transition:.22s}
+    .nav a:before{content:"";position:absolute;left:4px;top:10px;bottom:10px;width:3px;border-radius:4px;background:transparent;transition:.22s}
+    .nav a:hover,.nav a.active{background:rgba(168,216,216,.13);color:white}.nav a.active:before,.nav a:hover:before{background:var(--accent)}
+    main{margin-left:200px;padding:48px clamp(22px,5vw,72px);max-width:1180px}.hero{animation:fade .6s ease both}
+    .tag{display:inline-flex;gap:8px;align-items:center;color:var(--accent);background:#E0F4F4;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+    h1{font-size:clamp(34px,6vw,64px);line-height:1.05;margin:18px 0 12px;letter-spacing:-.04em}h2{display:flex;align-items:center;gap:10px;margin:0 0 18px;font-size:26px}h3{margin:0 0 10px}
+    .meta{color:var(--muted);margin-bottom:26px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.section{scroll-margin-top:24px;margin:28px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:24px}.summary{border-left:5px solid var(--accent);background:linear-gradient(135deg,#fff,#F0FAFA)}
+    .reveal{opacity:1;transform:none}.js .reveal{opacity:0;transform:translateY(30px);transition:.55s ease}.js .reveal.visible{opacity:1;transform:none}
+    .metric{transition:.22s}.metric:hover{transform:translateY(-4px);box-shadow:0 24px 55px rgba(46,139,139,.18)}.metric b{display:block;font-size:30px;color:var(--accent);line-height:1.1}.metric span{color:var(--muted);font-size:13px}
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:14px}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}th{background:#E0F4F4;color:#245d5d}tr:hover td{background:#F0FAFA}
+    .chart-wrap{height:320px}.fold{border:1px solid var(--line);border-radius:14px;overflow:hidden}.fold button{width:100%;border:0;background:#F8FCFC;color:var(--text);padding:14px 16px;font:inherit;font-weight:700;text-align:left;cursor:pointer}.fold button span{float:right;transition:.2s}.fold.open button span{transform:rotate(180deg)}.fold .body{display:none;padding:0 16px 16px}.fold.open .body{display:block}
+    .conclusion{display:grid;grid-template-columns:1fr 1fr;gap:16px}.point{display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:15px;background:#F8FCFC;border:1px solid var(--line)}.icon{width:22px;height:22px;flex:0 0 auto;stroke:var(--accent);stroke-width:2;fill:none}
+    footer{color:var(--muted);font-size:13px;margin:38px 0 10px}
+    @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    @media (max-width:760px){.nav{position:sticky;top:0;width:auto;height:auto;display:flex;gap:8px;overflow:auto;padding:10px 12px}.brand{display:none}.nav a{white-space:nowrap;margin:0}main{margin-left:0;padding:24px 16px}.grid,.conclusion{grid-template-columns:1fr}.chart-wrap{height:260px}}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.metric,.nav a{transition:none}.hero{animation:none}}
+    @media print{body{background:white}.nav{display:none}main{margin:0;padding:0}.card{box-shadow:none;break-inside:avoid}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="报告导航">
+    <div class="brand">湖泊报告<span>Report Template</span></div>
+    <a href="#summary" class="active">摘要</a><a href="#analysis">分析</a><a href="#data">数据</a><a href="#conclusion">结论</a>
+  </nav>
+  <main>
+    <header class="hero">
+      <span class="tag">2026-07-08 · 示例报告 · 湖泊色系</span>
+      <h1>把复杂信息整理成一份清爽、可读、能交付的 HTML 报告</h1>
+      <p class="meta">替换本模板中的标题、摘要、表格、图表数据和结论，即可生成新报告。</p>
+    </header>
+    <section id="summary" class="section card summary reveal">
+      <h2><svg class="icon" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>摘要</h2>
+      <p>本报告模板用于项目复盘、数据分析、知识卡片、调研结论等场景。默认左侧固定导航，主内容采用卡片式层级，适合在浏览器中阅读，也能打印成清爽文档。</p>
+      <div class="grid">
+        <div class="card metric"><b>4</b><span>固定导航段落</span></div>
+        <div class="card metric"><b>1</b><span>Chart.js 图表位</span></div>
+        <div class="card metric"><b>0</b><span>额外图标字体依赖</span></div>
+      </div>
+    </section>
+    <section id="analysis" class="section card reveal">
+      <h2><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>分析</h2>
+      <table>
+        <thead><tr><th>维度</th><th>观察</th><th>动作</th></tr></thead>
+        <tbody><tr><td>结构</td><td>摘要、分析、数据、结论四段足够覆盖多数报告。</td><td>长报告可加二级标题，但不扩导航。</td></tr><tr><td>视觉</td><td>湖泊色降低压迫感，适合长期阅读。</td><td>保持一个强调色，不混用彩虹色。</td></tr><tr><td>交互</td><td>折叠面板用于补充细节，避免正文膨胀。</td><td>默认只折叠非关键内容。</td></tr></tbody>
+      </table>
+      <div class="fold" style="margin-top:18px"><button type="button">展开补充说明 <span>⌄</span></button><div class="body"><p>这里放证据、引用、日志、命令输出摘要等辅助材料。主结论要留在正文，不要藏在折叠面板里。</p></div></div>
+    </section>
+    <section id="data" class="section card reveal">
+      <h2><svg class="icon" viewBox="0 0 24 24"><path d="M4 20h16M7 17V9M12 17V5M17 17v-7"/></svg>数据</h2>
+      <div class="chart-wrap"><canvas id="reportChart"></canvas></div>
+    </section>
+    <section id="conclusion" class="section card reveal">
+      <h2><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>结论</h2>
+      <div class="conclusion">
+        <div class="point"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><h3>可以直接复用</h3><p>复制本文件，替换内容和图表数据即可。</p></div></div>
+        <div class="point"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3v18M5 10l7-7 7 7"/></svg><div><h3>保持克制</h3><p>报告以信息清晰为主，动画只做层级提示。</p></div></div>
+      </div>
+    </section>
+    <footer>Generated with HTML 报告模板 · 使用前请阅读《报告规则.md》</footer>
+  </main>
+  <script>
+    document.documentElement.classList.add('js');
+    const links=[...document.querySelectorAll('.nav a')], sections=links.map(a=>document.querySelector(a.hash));
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id));}}),{rootMargin:'-35% 0px -55% 0px'});
+    sections.forEach(s=>s&&observer.observe(s));
+    const reveal=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el));
+    document.querySelectorAll('.fold button').forEach(btn=>btn.onclick=()=>btn.parentElement.classList.toggle('open'));
+    new Chart(document.getElementById('reportChart'),{type:'bar',data:{labels:['摘要','分析','数据','结论'],datasets:[{label:'完成度',data:[92,86,78,90],backgroundColor:['#2E8B8B','#20B2AA','#48D1CC','#E0F4F4'],borderRadius:10}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100,grid:{color:'#E0F4F4'}},x:{grid:{display:false}}}}});
+  </script>
+</body>
+</html>
