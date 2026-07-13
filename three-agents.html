@@ -27,7 +27,7 @@
       <a href="#routing">任务分派</a>
       <a href="#handoff">完整闭环</a>
       <a href="#evidence">交接证据</a>
-      <a href="#review">三眼审查</a>
+      <a href="#review">审查 Agent</a>
       <a href="#rework">返工流程</a>
       <a href="#test">验证方法</a>
     </aside>
@@ -43,15 +43,15 @@
       <section id="model">
         <p class="eyebrow">核心模型</p>
         <h2>三种能力，不等于三个自动决策者</h2>
-        <p>这套体系的关键不是 Agent 数量，而是权力分离。小墨负责想清楚，阿珂负责做出来，三眼负责看成品；任何阶段都不能越过用户。</p>
+        <p>这套体系的关键不是 Agent 数量，而是权力分离。方案 Agent 负责想清楚，执行 Agent 负责做出来，审查 Agent 负责看成品；任何阶段都不能越过用户。</p>
         <div class="flow">
-          <div class="flow-node"><b>马哥</b><span>提出需求与约束</span></div>
-          <div class="flow-node"><b>小墨</b><span>分析、方案、风险</span></div>
-          <div class="flow-node"><b>阿珂</b><span>实现、测试、部署</span></div>
-          <div class="flow-node"><b>三眼</b><span>视觉只读审查</span></div>
-          <div class="flow-node"><b>马哥</b><span>验收或决定返工</span></div>
+          <div class="flow-node"><b>用户</b><span>提出需求与约束</span></div>
+          <div class="flow-node"><b>方案 Agent</b><span>分析、方案、风险</span></div>
+          <div class="flow-node"><b>执行 Agent</b><span>实现、测试、部署</span></div>
+          <div class="flow-node"><b>审查 Agent</b><span>视觉只读审查</span></div>
+          <div class="flow-node"><b>用户</b><span>验收或决定返工</span></div>
         </div>
-        <div class="callout"><strong>一句话原则</strong>三眼是眼睛，不是手；小墨是方案脑，不是执行脚本；阿珂是执行脑，不是最终裁判。</div>
+        <div class="callout"><strong>一句话原则</strong>审查 Agent 是眼睛，不是手；方案 Agent 负责判断，不负责执行；执行 Agent 负责落地，不负责最终裁决。</div>
       </section>
 
       <section id="roles">
@@ -60,10 +60,10 @@
         <div class="table-wrap"><table>
           <thead><tr><th>角色</th><th>负责</th><th>禁止</th><th>写入位置</th></tr></thead>
           <tbody>
-            <tr><td><b>小墨</b><br>方案脑</td><td>读上下文、澄清需求、出方案、拆风险、复盘</td><td>修改代码、部署、删除文件、越过审批</td><td><code>Harness/方案交换/</code></td></tr>
-            <tr><td><b>阿珂</b><br>执行脑</td><td>代码、文件、调试、构建、真实验证、部署</td><td>擅自扩大范围、代替用户验收、直接听审查报告返工</td><td>项目目录 + 执行报告</td></tr>
-            <tr><td><b>三眼</b><br>审查脑</td><td>看图、视频、UI、网页、PPT，输出问题与建议</td><td>执行命令、改文件、部署、直接指挥阿珂</td><td><code>Harness/审查记录/</code></td></tr>
-            <tr><td><b>马哥</b><br>总控</td><td>授权、定方向、触发审查、最终验收</td><td>无</td><td><code>Harness/当前状态.md</code></td></tr>
+            <tr><td><b>方案 Agent</b><br>方案脑</td><td>读上下文、澄清需求、出方案、拆风险、复盘</td><td>修改代码、部署、删除文件、越过审批</td><td><code>Harness/方案交换/</code></td></tr>
+            <tr><td><b>执行 Agent</b><br>执行脑</td><td>代码、文件、调试、构建、真实验证、部署</td><td>擅自扩大范围、代替用户验收、直接根据审查报告返工</td><td>项目目录 + 执行报告</td></tr>
+            <tr><td><b>审查 Agent</b><br>审查脑</td><td>看图、视频、UI、网页、PPT，输出问题与建议</td><td>执行命令、改文件、部署、直接指挥执行 Agent</td><td><code>Harness/审查记录/</code></td></tr>
+            <tr><td><b>用户</b><br>总控</td><td>授权、定方向、触发审查、最终验收</td><td>无</td><td><code>Harness/当前状态.md</code></td></tr>
           </tbody>
         </table></div>
         <div class="callout warning"><strong>边界不是礼貌建议</strong>如果审查 Agent 可以直接改文件，它既出题又答题；如果执行 Agent 可以自行验收，质量闸门就失效。</div>
@@ -73,12 +73,12 @@
         <p class="eyebrow">Step 2</p>
         <h2>按任务类型分派，不让所有任务都走同一条线</h2>
         <div class="table-wrap"><table>
-          <thead><tr><th>任务类型</th><th>推荐流程</th><th>是否需要三眼</th></tr></thead>
+          <thead><tr><th>任务类型</th><th>推荐流程</th><th>是否需要审查 Agent</th></tr></thead>
           <tbody>
-            <tr><td>视觉产出</td><td>小墨方案 → 阿珂执行 → 三眼审查 → 马哥验收</td><td>用户手动触发</td></tr>
-            <tr><td>代码工程</td><td>小墨方案 → 阿珂实现/测试 → 马哥验收</td><td>有 UI 成品时可触发</td></tr>
-            <tr><td>纯知识</td><td>小墨整理 → 马哥验收</td><td>不需要</td></tr>
-            <tr><td>独立视觉审查</td><td>马哥触发 → 三眼读材料 → 输出报告</td><td>本身就是审查任务</td></tr>
+            <tr><td>视觉产出</td><td>方案 Agent → 执行 Agent → 审查 Agent → 用户验收</td><td>用户手动触发</td></tr>
+            <tr><td>代码工程</td><td>方案 Agent → 执行 Agent 实现与测试 → 用户验收</td><td>有 UI 成品时可触发</td></tr>
+            <tr><td>纯知识</td><td>方案 Agent 整理 → 用户验收</td><td>不需要</td></tr>
+            <tr><td>独立视觉审查</td><td>用户触发 → 审查 Agent 读材料 → 输出报告</td><td>本身就是审查任务</td></tr>
           </tbody>
         </table></div>
         <p>分派结果写进任务卡的 `任务类型` 字段。不要因为有三个 Agent，就强迫每个小任务都经过三次转手。</p>
@@ -88,17 +88,17 @@
         <p class="eyebrow">Step 3</p>
         <h2>跑一遍完整闭环</h2>
         <div class="timeline">
-          <div class="timeline-item"><h3>1. 马哥派活</h3><p>口头说明目标、约束和成功标准，当前状态进入“待分析”。</p></div>
-          <div class="timeline-item"><h3>2. 小墨出方案</h3><p>方案写入 `Harness/方案交换/任务ID.md`，状态改为“待马哥审批”。</p></div>
-          <div class="timeline-item"><h3>3. 马哥批准</h3><p>明确说“采用/执行”，状态进入“待执行”，负责人切换为阿珂。</p></div>
-          <div class="timeline-item"><h3>4. 阿珂执行</h3><p>按方案修改项目、跑测试、保存证据，执行报告写回方案交换。</p></div>
-          <div class="timeline-item"><h3>5. 马哥触发三眼</h3><p>只有视觉任务需要，并且必须由马哥说“审查”。三眼只读材料并写报告。</p></div>
-          <div class="timeline-item"><h3>6. 马哥验收</h3><p>选择完成、返工、暂缓或驳回。完成后任务进入归档。</p></div>
+          <div class="timeline-item"><h3>1. 用户派活</h3><p>说明目标、约束和成功标准，当前状态进入“待分析”。</p></div>
+          <div class="timeline-item"><h3>2. 方案 Agent 出方案</h3><p>方案写入 `Harness/方案交换/任务ID.md`，状态改为“待用户审批”。</p></div>
+          <div class="timeline-item"><h3>3. 用户批准</h3><p>明确说“采用/执行”，状态进入“待执行”，负责人切换为执行 Agent。</p></div>
+          <div class="timeline-item"><h3>4. 执行 Agent 执行</h3><p>按方案修改项目、跑测试、保存证据，执行报告写回方案交换。</p></div>
+          <div class="timeline-item"><h3>5. 用户触发审查 Agent</h3><p>只有视觉任务需要，并且必须由用户明确要求“审查”。审查 Agent 只读材料并写报告。</p></div>
+          <div class="timeline-item"><h3>6. 用户验收</h3><p>选择完成、返工、暂缓或驳回。完成后任务进入归档。</p></div>
         </div>
         <pre><code>待分析 → 待决策 → 待执行 → 执行中 → 待审查 → 待验收 → 完成 → 归档
                          ↘ 阻塞 ↗
 
-规则：没有马哥明确批准，不得进入“待执行”。</code></pre>
+规则：没有用户明确批准，不得进入“待执行”。</code></pre>
       </section>
 
       <section id="evidence">
@@ -132,8 +132,8 @@
 
       <section id="review">
         <p class="eyebrow">Step 5</p>
-        <h2>三眼只做视觉验收</h2>
-        <p>三眼只在网页、视频、图片、PPT、海报等视觉产出中介入。纯代码、配置和文档逻辑默认不走三眼。</p>
+        <h2>审查 Agent 只做视觉验收</h2>
+        <p>审查 Agent 只在网页、视频、图片、PPT、海报等视觉产出中介入。纯代码、配置和文档逻辑默认不进入视觉审查流程。</p>
         <div class="table-wrap"><table>
           <thead><tr><th>审查维度</th><th>检查内容</th></tr></thead>
           <tbody>
@@ -145,21 +145,21 @@
             <tr><td>交付风险</td><td>分辨率、编码、黑帧、音画同步、移动端</td></tr>
           </tbody>
         </table></div>
-        <div class="callout danger"><strong>三眼报告不是任务单</strong>阿珂不能看到“需小修”就直接修改。必须先由马哥确认，或由小墨整理成新的返工方案。</div>
+        <div class="callout danger"><strong>审查报告不是任务单</strong>执行 Agent 不能看到“需小修”就直接修改。必须先由用户确认，或由方案 Agent 整理成新的返工方案。</div>
       </section>
 
       <section id="rework">
         <p class="eyebrow">Step 6</p>
         <h2>返工也要重新过闸门</h2>
-        <pre><code>阿珂初版
-  → 马哥触发三眼
-  → 三眼写审查报告
-  → 马哥决定返工
-  → 小墨把问题整理成优化方案
-  → 马哥批准
-  → 阿珂二修
-  → 三眼复审
-  → 马哥验收</code></pre>
+        <pre><code>执行 Agent 产出初版
+  → 用户触发审查 Agent
+  → 审查 Agent 写审查报告
+  → 用户决定返工
+  → 方案 Agent 把问题整理成优化方案
+  → 用户批准
+  → 执行 Agent 二次修改
+  → 审查 Agent 复审
+  → 用户验收</code></pre>
         <p>这样做看起来多一步，却能避免“审查建议在执行时被随意解释”。每次返工都有明确范围，不会越改越大。</p>
         <div class="callout warning"><strong>什么时候不要自动化</strong>只有当三 Agent 稳定跑过至少十个完整项目、手工转接成为明确瓶颈，再考虑 App 通知和半自动调度。先让流程从真实痛点里长出来。</div>
       </section>

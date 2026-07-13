@@ -23,6 +23,7 @@
     <aside class="toc" aria-label="页内目录">
       <strong>本页目录</strong>
       <a href="#outcome">完成结果</a>
+      <a href="#gate-zero">闸零与六管道</a>
       <a href="#boundary">职责边界</a>
       <a href="#structure">目录结构</a>
       <a href="#protocol">写协议</a>
@@ -53,8 +54,32 @@
         </div>
       </section>
 
+      <section id="gate-zero">
+        <p class="eyebrow">Gate 0 · 需求确认</p>
+        <h2>需求不清，不进入方案</h2>
+        <p>在拆任务、选工具和写代码之前，先确认目标、现有输入、交付物和验收标准。方案越精确，执行 Agent 越不需要猜，成品质量越稳定。</p>
+        <div class="checklist">
+          <div class="check-item"><b>直接反问</b><span>缺少关键约束时，只问当前最影响方向的一个问题。</span></div>
+          <div class="check-item"><b>给出多方案</b><span>用户还没定方向时，提供少量互斥方案并说明取舍。</span></div>
+          <div class="check-item"><b>反推参考</b><span>有样片、截图或现成产品时，先提取结构、节奏和视觉规律。</span></div>
+          <div class="check-item"><b>冻结验收口径</b><span>把“做到什么算完成”写进任务卡，再允许进入执行。</span></div>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>管道</th><th>先确认什么</th><th>交付前必须验证</th></tr></thead>
+          <tbody>
+            <tr><td>视频</td><td>受众、时长、画幅、素材、节奏、声音</td><td>分镜连续、字幕安全区、音画同步、导出参数</td></tr>
+            <tr><td>图片</td><td>用途、尺寸、主体、风格、参考、禁改区域</td><td>主体一致、文字准确、边缘干净、目标尺寸</td></tr>
+            <tr><td>网页</td><td>目标、信息架构、视觉方向、交互、终端</td><td>真实浏览器、响应式、关键链路、控制台与构建</td></tr>
+            <tr><td>代码</td><td>复现条件、输入输出、影响范围、成功标准</td><td>最小修复、针对性测试、回归检查、代码审查</td></tr>
+            <tr><td>采集</td><td>来源、权限、范围、频率、字段、去重规则</td><td>覆盖率、增量边界、重复数据、失败记录</td></tr>
+            <tr><td>内容</td><td>读者、目的、事实来源、结构、语气、篇幅</td><td>事实核验、引用边界、逻辑顺序、最终校对</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout"><strong>闸零通过条件</strong>目标、输入、输出和验收标准都能用一句话说清；否则继续确认，不让执行 Agent 靠猜测补全需求。</div>
+      </section>
+
       <section id="boundary">
-        <p class="eyebrow">Step 0</p>
+        <p class="eyebrow">准备工作</p>
         <h2>先定义 Harness 不做什么</h2>
         <p>Harness 是调度协议壳，只回答五个问题：谁、何时、做什么、做到哪、谁审查。它不是新的代码仓库，也不是第二套知识库。</p>
         <div class="table-wrap"><table>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>马哥的 AI 协作体系 — Harness Engineering 实践</title>
+  <title>用户的 AI 协作体系 — Harness Engineering 实践</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root{--accent:#2E8B8B;--bg:#F5F9F9;--card:#fff;--text:#2C3E50;--muted:#7F8C8D;--nav:#1A2B2B;--navText:#A8D8D8;--a2:#20B2AA;--a3:#48D1CC;--line:#D9EEEE;--shadow:0 18px 45px rgba(46,139,139,.12);--r:18px}
@@ -37,7 +37,7 @@
   <main>
     <header class="hero">
       <span class="tag">2026-07-08 · Harness Engineering · 自建体系</span>
-      <h1>马哥的 AI 协作体系<br>从裸 Agent 到生产级 Harness</h1>
+      <h1>用户的 AI 协作体系<br>从裸 Agent 到生产级 Harness</h1>
       <p class="meta">本文档梳理了目前 workspace 中的 Harness Engineering 体系——规则层、记忆层、执行流转层、双 Agent 协作模式、安全边界与自动化。</p>
     </header>
     <section id="summary" class="section card summary reveal">
@@ -54,7 +54,7 @@
       <table>
         <thead><tr><th>维度</th><th>我们的方案</th><th>对比视频推荐的方案</th></tr></thead>
         <tbody>
-          <tr><td>执行约束</td><td>阿珂执行脑协议（10条规则外挂）</td><td>Hermes v0.18 后验规则引擎（改源码）</td></tr>
+          <tr><td>执行约束</td><td>执行 Agent 协议（10条规则外挂）</td><td>Hermes v0.18 后验规则引擎（改源码）</td></tr>
           <tr><td>记忆系统</td><td>Obsidian vault 文件驱动</td><td>视频 Memory Skill（黑盒）</td></tr>
           <tr><td>反馈循环</td><td>BugTracker.md + 反面教材</td><td>GEPA 自动进化（需大量数据）</td></tr>
           <tr><td>浏览器自动化</td><td>Playwright MCP</td><td>MCP 浏览器 Skill</td></tr>
@@ -72,11 +72,11 @@
       <div class="conclusion">
         <div class="point"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><h3>自建 > 外装</h3><p>五个视频推荐的 Skill 中，四个我们已有等价方案。自建的更透明、更可控、不依赖黑盒更新。</p></div></div>
         <div class="point"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3v18M5 10l7-7 7 7"/></svg><div><h3>文件驱动 > API 编排</h3><p>双 Agent 通过 workspace 文件交接，不写一行 API 调用。AGENTS.md 铁律 + 当前状态.md = 最可靠的上下文恢复。</p></div></div>
-        <div class="point"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg><div><h3>规则外挂 = 无限迭代</h3><p>阿珂执行脑协议是外部 Markdown 文件。今天 10 条，踩坑补 1 条，不碰源码。视频的"后验规则引擎"做不到这一点。</p></div></div>
+        <div class="point"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg><div><h3>规则外挂 = 无限迭代</h3><p>执行 Agent 协议是外部 Markdown 文件。今天 10 条，踩坑补 1 条，不碰源码。视频的"后验规则引擎"做不到这一点。</p></div></div>
         <div class="point"><svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM9 9h6v6H9z"/></svg><div><h3>下一步</h3><p>继续积累 session 数据 → 跑自我进化 → 把 BugTracker 的教训自动化进规则层。HTML 报告模板已就绪，后续复盘全部走这个格式。</p></div></div>
       </div>
     </section>
-    <footer>Generated with 湖泊色报告模板 · 工具链：小墨(Hermes/DP) + 阿珂(Codex/GPT) · 数据来源：workspace 实测统计</footer>
+    <footer>Generated with 湖泊色报告模板 · 工具链：方案 Agent（Hermes/DP）+ 执行 Agent（Codex/GPT）· 数据来源：workspace 实测统计</footer>
   </main>
   <script>
     document.documentElement.classList.add('js');
@@ -86,7 +86,7 @@
     const reveal=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el));
     document.querySelectorAll('.fold button').forEach(btn=>btn.onclick=()=>btn.parentElement.classList.toggle('open'));
-    new Chart(document.getElementById('reportChart'),{type:'bar',data:{labels:['执行规则','记忆层','BugTracker','阿珂协议','备份','报告模板'],datasets:[{label:'成熟度',data:[85,78,62,90,95,88],backgroundColor:['#2E8B8B','#2E8B8B','#48D1CC','#2E8B8B','#2E8B8B','#20B2AA'],borderRadius:10}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100,grid:{color:'#E0F4F4'}},x:{grid:{display:false}}}});
+    new Chart(document.getElementById('reportChart'),{type:'bar',data:{labels:['执行规则','记忆层','BugTracker','执行协议','备份','报告模板'],datasets:[{label:'成熟度',data:[85,78,62,90,95,88],backgroundColor:['#2E8B8B','#2E8B8B','#48D1CC','#2E8B8B','#2E8B8B','#20B2AA'],borderRadius:10}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100,grid:{color:'#E0F4F4'}},x:{grid:{display:false}}}}});
   </script>
 </body>
 </html>

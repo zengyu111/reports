@@ -23,6 +23,7 @@
     <aside class="toc" aria-label="页内目录">
       <strong>本页目录</strong>
       <a href="#result">最终结果</a>
+      <a href="#proof">Harness 证明</a>
       <a href="#contract">设计合同</a>
       <a href="#architecture">工程结构</a>
       <a href="#phases">阶段演进</a>
@@ -34,10 +35,11 @@
 
     <article class="article" id="article">
       <header>
-        <p class="eyebrow">教程 03 · Case Study</p>
+        <p class="eyebrow">Harness 案例 03 · 道德经宇宙</p>
         <h1>道德经宇宙搭建实战</h1>
         <p class="lede">从 81 章《道德经》静态双星域，到 81 + 33 篇、三层轨道、可搜索穿梭和四层阅读内容。这里记录每次方向修正背后的原因。</p>
-        <div class="actions"><a class="button" href="#phases">查看阶段演进</a><a class="button secondary" href="index.html">返回教程首页</a></div>
+        <div class="actions"><a class="button" href="https://river-zen.github.io/reports/tao-live/" target="_blank" rel="noopener">进入道德经宇宙 →</a><a class="button secondary" href="#phases">查看阶段演进</a><a class="button secondary" href="index.html">返回教程首页</a></div>
+        <div class="callout warning"><strong>开发预览</strong>Phase 3.2 仍在持续迭代，当前页面记录的是开发过程与阶段成果，不代表正式发布版。</div>
       </header>
 
       <section id="result">
@@ -56,6 +58,18 @@
           <div class="metric"><b>114 篇</b><span>81 道德经 + 33 庄子</span></div>
           <div class="metric"><b>3 星域</b><span>道经、德经、庄子</span></div>
           <div class="metric"><b>4 层内容</b><span>原文、注释、典故、启示</span></div>
+        </div>
+      </section>
+
+      <section id="proof">
+        <p class="eyebrow">Harness 案例证明</p>
+        <h2>这个项目验证了文件驱动协作能稳定推进长任务</h2>
+        <div class="checklist">
+          <div class="check-item"><b>分阶段持续推进</b><span>长任务拆成清晰阶段，每次只解决一个主要问题。</span></div>
+          <div class="check-item"><b>多文件规则一致</b><span>设计合同、数据脚本、交互代码和教程记录保持同一口径。</span></div>
+          <div class="check-item"><b>数据错误不隐藏</b><span>缺篇、重复 ID 和空字段在构建期直接失败。</span></div>
+          <div class="check-item"><b>修改后自动验证</b><span>数据、语法、构建、浏览器交互和 WebGL 逐层检查。</span></div>
+          <div class="check-item"><b>过程完整复盘</b><span>每次方向修正、性能问题和验收证据都能回溯。</span></div>
         </div>
       </section>
 
@@ -111,6 +125,11 @@ npm run build</code></pre>
       <section id="phases">
         <p class="eyebrow">阶段演进</p>
         <h2>每一阶段只解决一个主要问题</h2>
+        <div class="gallery">
+          <figure><img src="assets/tao-phase1.png" alt="Phase 1 静态星环"><figcaption>Phase 1 · 静态星环</figcaption></figure>
+          <figure><img src="assets/tao-phase2.png" alt="Phase 2 沉浸星海"><figcaption>Phase 2 · 进入星海</figcaption></figure>
+          <figure><img src="assets/tao-phase3.png" alt="Phase 3 三层轨道"><figcaption>Phase 3 · 三层轨道</figcaption></figure>
+        </div>
         <div class="timeline">
           <div class="timeline-item">
             <h3>Phase 1 · 数据与静态宇宙</h3>
@@ -178,7 +197,7 @@ npm run build</code></pre>
             <tr><td>构建</td><td><code>npm run check:data</code>、<code>npm run build</code>、所有 JS 语法检查</td><td>通过</td></tr>
             <tr><td>交互</td><td>搜索“逍遥游”、穿梭、阅读、中央随机探索、返回宇宙</td><td>通过</td></tr>
             <tr><td>响应式</td><td>1440 × 900 与 390 × 844，无横向溢出</td><td>通过</td></tr>
-            <tr><td>性能</td><td>Phase 3.2 桌面 102.7 FPS，手机 107.0 FPS</td><td>通过</td></tr>
+            <tr><td>性能</td><td>本机 Windows、Playwright Chromium：桌面 1440 × 900 为 102.7 FPS，手机视口 390 × 844 为 107.0 FPS；原始执行报告未记录浏览器版本与采样时长，数字仅作当次环境快照</td><td>通过</td></tr>
             <tr><td>WebGL</td><td>桌面/手机像素采样，<code>glError = 0</code></td><td>通过</td></tr>
           </tbody>
         </table></div>
@@ -207,7 +226,7 @@ npm run build</code></pre>
     </article>
   </main>
 
-  <footer class="site-footer"><div class="footer-inner"><span>教程 03 / 道德经宇宙搭建实战</span><span><a href="index.html">返回教程首页 ↑</a></span></div></footer>
+  <footer class="site-footer"><div class="footer-inner"><span>Harness 案例 03 / 道德经宇宙</span><span><a href="harness.html">返回 Harness 教程 ↑</a></span></div></footer>
   <script src="assets/site.js"></script>
 </body>
 </html>
